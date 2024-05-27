@@ -5,9 +5,9 @@ import {
   CardContent,
   CardMedia,
   CardProps,
-  Link,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 type ButtonCardProps = CardProps & {
   text: string;
@@ -16,23 +16,23 @@ type ButtonCardProps = CardProps & {
 };
 
 const ButtonCard: React.FC<ButtonCardProps> = ({ text, link, image }) => {
+  const onClick = () => (window.location.href = link);
+
   return (
-    <Link href={link}>
-      <Card sx={{ width: "250px" }}>
-        <CardActionArea>
-          <CardMedia component="img" height="140" image={image} alt="????" />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {text}
-            </Typography>
-            {/* <Typography variant="body2" color="text.secondary">
+    <Card sx={{ width: "250px" }} onClick={onClick}>
+      <CardActionArea>
+        <CardMedia component="img" height="140" image={image} />
+        <CardContent>
+          <Typography gutterBottom variant="h5">
+            {text}
+          </Typography>
+          {/* <Typography variant="body2" color="text.secondary">
           Lizards are a widespread group of squamate reptiles, with over 6,000
           species, ranging across all continents except Antarctica
         </Typography> */}
-          </CardContent>
-        </CardActionArea>
-      </Card>
-    </Link>
+        </CardContent>
+      </CardActionArea>
+    </Card>
   );
 };
 
